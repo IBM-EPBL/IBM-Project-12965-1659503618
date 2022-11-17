@@ -20,7 +20,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 EMAIL=''
 USERID=''
 
-conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=2f3279a5-73d1-4859-88f0-a6c3e6b4b907.c3n41cmd0nqnrk39u98g.databases.appdomain.cloud;PORT=30756;Security=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=ctb99199;PWD=GybYxLw1rHz86oSh;","","")
+conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=b1bc1829-6f45-4cd4-bef4-10cf081900bf.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=32304;Security=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=ctb99199;PWD=GybYxLw1rHz86oSh;","","")
 
 def fetch_walletamount():
     sql = 'SELECT WALLET FROM PETA_USER WHERE EMAIL=?'
