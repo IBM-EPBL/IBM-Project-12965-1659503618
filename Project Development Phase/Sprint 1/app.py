@@ -9,8 +9,8 @@ app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = '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'
-app.config['MAIL_DEFAULT_SENDER'] = 'mohamedriyazafzal@gmail.com'
+app.config['MAIL_PASSWORD'] = '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'
+app.config['MAIL_DEFAULT_SENDER'] = 'petatracker@gmail.com'
 mail = Mail(app)
 
 conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=ba99a9e6-d59e-4883-8fc0-d6a8c9f7a08f.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=31321;Security=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=zrx87241;PWD=uXYyT3xBNBdIBkTH;","","")
@@ -69,8 +69,8 @@ app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = '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'
-app.config['MAIL_DEFAULT_SENDER'] = 'mohamedriyazafzal@gmail.com'
+app.config['MAIL_PASSWORD'] = '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'
+app.config['MAIL_DEFAULT_SENDER'] = 'petatracker@gmail.com'
 mail = Mail(app)
 
 conn=ibm_db.connect("DATABASE=bludb;HOSTNAME=ba99a9e6-d59e-4883-8fc0-d6a8c9f7a08f.c1ogj3sd0tgtu0lqde00.databases.appdomain.cloud;PORT=31321;Security=SSL;SSLServerCertificate=DigiCertGlobalRootCA.crt;UID=zrx87241;PWD=uXYyT3xBNBdIBkTH;","","")
