@@ -73,15 +73,11 @@ def add():
     return render_template("home.html")
 
 
-
 #SIGN--UP--OR--REGISTER
-
 
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
-
-
 
 @app.route('/register', methods =['GET', 'POST'])
 def register():
@@ -154,10 +150,7 @@ def register():
             # cursor.execute('INSERT INTO register VALUES (NULL, % s, % s, % s)', (username, email,password))
             # mysql.connection.commit()
             msg = 'You have successfully registered !'
-        return render_template('signup.html', msg = msg)
-        
-        
- 
+        return render_template('signup.html', msg = msg)    
         
  #LOGIN--PAGE
     
@@ -169,7 +162,6 @@ def signin():
 def login():
     global userid
     msg = ''
-   
   
     if request.method == 'POST' :
         username = request.form['username']
@@ -192,7 +184,7 @@ def login():
         res = ibm_db.exec_immediate(ibm_db_conn, param)
         dictionary = ibm_db.fetch_assoc(res)
 
-        # sendmail("hello sakthi","sivasakthisairam@gmail.com")
+        # sendmai
 
         if account:
             session['loggedin'] = True
@@ -208,20 +200,11 @@ def login():
     return render_template('login.html', msg = msg)
 
 
-
-       
-
-
-
-
-
 #ADDING----DATA
-
 
 @app.route("/add")
 def adding():
-    return render_template('add.html')
-
+    return render_template('addexpense.html')
 
 @app.route('/addexpense',methods=['GET', 'POST'])
 def addexpense():
@@ -255,6 +238,7 @@ def addexpense():
 
     print("Expenses added")
 
+    
     # email part
 
     param = "SELECT * FROM expenses WHERE userid = " + str(session['id']) + " AND MONTH(date) = MONTH(current timestamp) AND YEAR(date) = YEAR(current timestamp) ORDER BY date DESC"
@@ -294,8 +278,7 @@ def addexpense():
         msg = "Hello " + session['username'] + " , " + "you have crossed the monthly limit of Rs. " + s + "/- !!!" + "\n" + "Thank you, " + "\n" + "Team Personal Expense Tracker."  
         sendmail(msg,session['email'])  
     
-    return redirect("/display")
-
+    return redirect("viewanalysis.html")
 
 
 #DISPLAY---graph 
@@ -325,10 +308,8 @@ def display():
         print(temp)
         dictionary = ibm_db.fetch_assoc(res)
 
-    return render_template('display.html' ,expense = expense)
+    return render_template('viewanalysis.html' ,expense = expense)
                           
-
-
 
 #delete---the--data
 
@@ -342,7 +323,7 @@ def delete(id):
     res = ibm_db.exec_immediate(ibm_db_conn, param)
 
     print('deleted successfully')    
-    return redirect("/display")
+    return redirect("viewanalysis.html")
  
     
 #UPDATE---DATA
@@ -372,9 +353,6 @@ def edit(id):
 
     print(row[0])
     return render_template('edit.html', expenses = row[0])
-
-
-
 
 @app.route('/update/<id>', methods = ['POST'])
 def update(id):
@@ -406,19 +384,13 @@ def update(id):
       ibm_db.execute(stmt)
 
       print('successfully updated')
-      return redirect("/display")
-     
-      
-
-            
- 
-         
-    
+      return redirect("viewanlaysis.html")
             
  #limit
+
 @app.route("/limit" )
 def limit():
-       return redirect('/limitn')
+       return redirect('limit.html')
 
 @app.route("/limitnum" , methods = ['POST' ])
 def limitnum():
@@ -436,7 +408,6 @@ def limitnum():
          
          return redirect('/limitn')
      
-         
 @app.route("/limitn") 
 def limitn():
     # cursor = mysql.connection.cursor()
@@ -458,6 +429,7 @@ def limitn():
     
     return render_template("limit.html" , y= s)
 
+  
 #REPORT
 
 @app.route("/today")
@@ -501,7 +473,6 @@ def today():
           print(temp)
           dictionary = ibm_db.fetch_assoc(res)
 
-  
       total=0
       t_food=0
       t_entertainment=0
@@ -509,7 +480,6 @@ def today():
       t_rent=0
       t_EMI=0
       t_other=0
- 
      
       for x in expense:
           total += x[4]
@@ -538,9 +508,6 @@ def today():
       print(t_rent)
       print(t_EMI)
       print(t_other)
-
-
-     
       return render_template("today.html", texpense = texpense, expense = expense,  total = total ,
                            t_food = t_food,t_entertainment =  t_entertainment,
                            t_business = t_business,  t_rent =  t_rent, 
@@ -589,7 +556,6 @@ def month():
           print(temp)
           dictionary = ibm_db.fetch_assoc(res)
 
-  
       total=0
       t_food=0
       t_entertainment=0
@@ -597,7 +563,6 @@ def month():
       t_rent=0
       t_EMI=0
       t_other=0
- 
      
       for x in expense:
           total += x[4]
@@ -627,13 +592,12 @@ def month():
       print(t_EMI)
       print(t_other)
 
-
-     
       return render_template("today.html", texpense = texpense, expense = expense,  total = total ,
                            t_food = t_food,t_entertainment =  t_entertainment,
                            t_business = t_business,  t_rent =  t_rent, 
                            t_EMI =  t_EMI,  t_other =  t_other )
-         
+  
+  
 @app.route("/year")
 def year():
     #   cursor = mysql.connection.cursor()
@@ -675,7 +639,6 @@ def year():
           expense.append(temp)
           print(temp)
           dictionary = ibm_db.fetch_assoc(res)
-
   
       total=0
       t_food=0
@@ -685,7 +648,6 @@ def year():
       t_EMI=0
       t_other=0
  
-     
       for x in expense:
           total += x[4]
           if x[6] == "food":
@@ -713,14 +675,13 @@ def year():
       print(t_rent)
       print(t_EMI)
       print(t_other)
-
-
      
       return render_template("today.html", texpense = texpense, expense = expense,  total = total ,
                            t_food = t_food,t_entertainment =  t_entertainment,
                            t_business = t_business,  t_rent =  t_rent, 
                            t_EMI =  t_EMI,  t_other =  t_other )
 
+    
 #log-out
 
 @app.route('/logout')
