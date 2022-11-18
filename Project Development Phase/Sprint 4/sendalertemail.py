@@ -9,8 +9,8 @@ def sendmail(TEXT,email):
     print("sorry we cant process your candidature")
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
-    # s.login("il.tproduct8080@gmail.com", "oms@1Ram")
-    s.login("tproduct8080@gmail.com", "lxixbmpnexbkiemh")
+    # s.login("il.petatracker.com", "oms@1Ram")
+    s.login("petatrackergmail.com", "lxixbmpnexbkiemh")
     message  = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
     # s.sendmail("il.tproduct8080@gmail.com", email, message)
     s.sendmail("il.tproduct8080@gmail.com", email, message)
@@ -18,7 +18,7 @@ def sendmail(TEXT,email):
 def sendgridmail(user,TEXT):
   
     # from_email = Email("petatracker@gmail.com")
-    from_email = Email("tproduct8080@gmail.com") 
+    from_email = Email("petatracker@gmail.com") 
     to_email = To(user) 
     subject = "Your expense limit had been reached"
     content = Content("text/plain",TEXT)
